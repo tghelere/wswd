@@ -1,0 +1,31 @@
+#Author:        TGhelere
+#Github:        https://github.com/tghelere
+#Project Repo:  git@github.com:tghelere/wswd.git
+
+version: '3.1'
+
+services:
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mariadb:latest
+    volumes:
+      - project_name:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: p4s5w0rd #default user = root
+
+  wordpress:
+    image: wordpress:latest #After installing wordpress and copying the wp-config.php file to the root of the project, comment on this line and uncomment the next ones;
+#   build: ./
+#   volumes:
+#     - ./wp-content:/var/www/html/wp-content
+    ports:
+      - 80:80
+
+
+volumes:
+  project_name:
+
